@@ -6,22 +6,37 @@ load_dotenv()
 
 USERNAME = os.getenv("MONGO_INITDB_ROOT_USERNAME")
 PASSWORD = os.getenv("MONGO_INITDB_ROOT_PASSWORD")
-MONGO_URI = os.getenv("MONGO_URI")
-ENV = sys.argv[1]
 
 
 def connect() -> MongoClient:
     client = None
-    if ENV == "dev":
+    try:
         client = MongoClient(
             host=["localhost:27017"],
             username=USERNAME,
             password=PASSWORD,
         )
-    elif ENV == "prod":
-        client = MongoClient(MONGO_URI)
+        return client["tests"]
+    except:
+        print("Error")
 
-    return client["database"]
+
+def insert_speedtest(values):
+    # TODO: input validation
+    insert_doc = {
+        "timestamp": values["timestamp"],
+        "ping": values["ping"],
+        "download": values["download"],
+        "upload": values["upload"],
+        "server_name": values["server"]["name"],
+        "server_lat": values["server"]["lat"],
+        "server_long": values["server"]["lon"],
+    }
+    try:
+        db.tests.insert_one(insert_doc)
+        print("speedtest inserted")
+    except:
+        print(f"Error inserting data: {insert_doc}")
 
 
 if __name__ == "__main__":

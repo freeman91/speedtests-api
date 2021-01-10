@@ -4,14 +4,14 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="",
-    version="0.0.0",
+    name="speedtests-api",
+    version="0.0.01",
     author="Addison Freeman",
     author_email="addisonfreeman91@gmail.com",
     description="API service",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/freeman91/mongo-flask-api-template",
+    url="https://github.com/freeman91/speedtests-api",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
