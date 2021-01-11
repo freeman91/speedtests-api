@@ -23,14 +23,15 @@ def connect() -> MongoClient:
 
 def insert_speedtest(values):
     # TODO: input validation
+    db = connect()
     insert_doc = {
         "timestamp": values["timestamp"],
         "ping": values["ping"],
         "download": values["download"],
         "upload": values["upload"],
-        "server_name": values["server"]["name"],
-        "server_lat": values["server"]["lat"],
-        "server_long": values["server"]["lon"],
+        "server_name": values["server_name"],
+        "server_lat": values["server_lat"],
+        "server_long": values["server_long"],
     }
     try:
         db.tests.insert_one(insert_doc)
