@@ -3,4 +3,5 @@ venv
 mongo-volume
 __pycache__/
 .vscode
-cronlogs/
+cronlogs/*
+speedtests.db
