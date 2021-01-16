@@ -1,5 +1,4 @@
-import logging
-import os
+import os, time, logging
 
 from flask import Flask, jsonify, request
 from flask_meter import FlaskMeter
@@ -23,9 +22,17 @@ def create_app():
 
     app.register_blueprint(tests)
 
-    @app.route("/")
+    @app.route("/health")
     def index():
-        payload = {"result": "success"}
+        check = database.tests.find_one()
+        health = "DB connected" if check else "No DB connection"
+        payload = {"health": "healthy", "DB connection": health}
         return jsonify(payload)
+
+    @app.route("/last24hours")
+    def last_24():
+        utc_24_hours_ago = round(time.time()) - 86400
+        res = database.tests.find({"timestamp": {"$gt": utc_24_hours_ago}}, {"_id": 0})
+        return jsonify({"result": "success", "payload": list(res)})
 
     return app

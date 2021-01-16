@@ -12,7 +12,7 @@ def connect() -> MongoClient:
     client = None
     try:
         client = MongoClient(
-            host=["localhost:27017"],
+            host=["192.168.0.42:27017"],
             username=USERNAME,
             password=PASSWORD,
         )
