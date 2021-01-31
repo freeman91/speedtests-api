@@ -2,6 +2,7 @@ import os, time, logging
 
 from flask import Flask, jsonify, request
 from flask_meter import FlaskMeter
+from flask_cors import CORS
 
 from api.controllers.tests import tests
 from api.config import app_config
@@ -12,6 +13,7 @@ flask_meter = FlaskMeter()
 
 def create_app():
     app = Flask(__name__)
+    cors = CORS(app)
 
     logger = logging.getLogger()
     logger.setLevel(app_config.LOG_LEVEL)

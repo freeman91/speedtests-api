@@ -7,6 +7,7 @@ load_dotenv(verbose=True)
 
 class Config(object):
     LOG_LEVEL = logging.INFO
+    CORS_HEADERS = 'Content-Type'
 
 
 class DevelopmentConfig(Config):
