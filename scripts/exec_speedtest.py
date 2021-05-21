@@ -10,6 +10,7 @@ from db_workbench import insert_speedtest
 
 
 def run_speedtest():
+    timestamp = int(time.time())
     try:
         s = Speedtest()
         s.get_best_server()
@@ -20,7 +21,7 @@ def run_speedtest():
     except:
         return {
             "msg": "FAILED",
-            "timestamp": int(time.time()),
+            "timestamp": timestamp,
             "ping": 0,
             "download": 0,
             "upload": 0,
