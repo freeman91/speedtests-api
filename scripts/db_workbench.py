@@ -35,7 +35,7 @@ def insert_speedtest(values):
     }
     try:
         db.tests.insert_one(insert_doc)
-        print("speedtest inserted")
+        print(f"{values['timestamp']}: speedtest inserted")
     except:
         print(f"Error inserting data: {insert_doc}")
 
