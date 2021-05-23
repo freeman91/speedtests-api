@@ -13,7 +13,6 @@ tests = Blueprint("tests", __name__)
 @cross_origin()
 def get_test_data():
     now = time.time()
-    print(db)
 
     test_data = db.tests.find(
         {
@@ -27,6 +26,4 @@ def get_test_data():
         }
     )
 
-    json_docs = [json.dumps(doc, default=json_util.default) for doc in test_data]
-
-    return {"payload": json_docs}, 200
+    return {"payload": [doc for doc in test_data]}, 200
