@@ -40,3 +40,8 @@ crontab -e
 docker run speedtests-api_flask
 # flask container is connected to mongodb on Jupiter
 ```
+
+## After Jupiter restart
+```sh
+d.build
+```
