@@ -5,3 +5,4 @@ __pycache__/
 .vscode
 cronlogs/*
 speedtests.db
+.DS_Store
